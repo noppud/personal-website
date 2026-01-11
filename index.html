@@ -199,11 +199,11 @@ nav a:hover, nav a.active {
 }
 
 .section-content {
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+    overflow: visible;
 }
 
 .section-content.collapsed {
+    overflow: hidden;
     max-height: 0 !important;
 }
 
@@ -279,7 +279,7 @@ nav a:hover, nav a.active {
 }
 
 .exp-details.expanded {
-    max-height: 500px;
+    max-height: 2000px;
     opacity: 1;
 }
 
@@ -287,12 +287,6 @@ nav a:hover, nav a.active {
     font-size: 14px;
     color: var(--text-tertiary);
     line-height: 1.6;
-}
-
-.exp-tech {
-    margin-top: 8px;
-    font-size: 13px;
-    color: var(--text-tertiary);
 }
 
 /* Education */
@@ -307,43 +301,6 @@ nav a:hover, nav a.active {
 
 .education-list li:last-child {
     border-bottom: none;
-}
-
-/* Tech Section */
-.tech-label {
-    cursor: pointer;
-    position: relative;
-}
-
-.tech-label:hover::after {
-    content: "Why would you care?";
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 12px;
-    padding: 6px 10px;
-    background: var(--border);
-    color: var(--text-secondary);
-    font-size: 12px;
-    font-weight: 400;
-    white-space: nowrap;
-    border-radius: 4px;
-}
-
-.tech-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 8px 0;
-}
-
-.tech-tag {
-    font-size: 13px;
-    color: var(--text-secondary);
-    background: var(--border);
-    padding: 4px 10px;
-    border-radius: 4px;
 }
 
 /* Footer */
@@ -394,7 +351,7 @@ footer a:hover {
         <main class="landing" id="landing">
             <h1>Konsta Varonen</h1>
             <p class="intro">
-                Backend & AI focused full-stack problem solver.
+                Generalist problem solver.
                 Co-Founder & CTO at <a href="https://control.dev">Control.dev</a>.
                 Helsinki, Finland.
             </p>
@@ -403,6 +360,16 @@ footer a:hover {
         <main class="about" id="about">
             <img src="profile.jpg" alt="Konsta Varonen" class="profile">
             <h1>About</h1>
+
+            <p>Hi!</p>
+
+            <p>I am Konsta, I've lived my whole life around the Helsinki region. I studied Information Networks at Aalto University, and have spent the past 10 years as a software engineer across multiple companies. I have wide experience with different technology stacks and have worked in diverse teams of varying sizes and domains. I've had the responsibility to lead teams, but I'm most at home as a hands-on shovel man. Currently building <a href="https://control.dev"><strong>Control.dev</strong></a> as CTO and Co-Founder.</p>
+
+            <p>Besides software engineering, I've been a taxi driver, a croupier at RAY (Finland's gambling monopoly), and a peacekeeper in Lebanon with the Finnish Defence Forces, along multiple other side hustles. Overall, I identify myself as a generalist problem solver.</p>
+
+            <p>Married to my wife, whom I met 11 years ago ❤️. We also have two dogs 🐕.</p>
+
+            <p>During my freetime I mostly do various outdoor things, such as cycling, trail running and hiking 🌲. Alternatively, I will hit the gym or study some new technologies.</p>
 
             <h2 class="section-header" onclick="toggleSection(this)">
                 <span>Experience</span>
@@ -420,7 +387,7 @@ footer a:hover {
                         </div>
                         <div class="exp-company">Control.dev</div>
                         <div class="exp-details">
-                            <div class="exp-description">Leading technology strategy and product development at an early-stage startup focused on developer tools.</div>
+                            <div class="exp-description">Leading technology and product development at an early-stage startup focused on making the world a better place for finance professionals.</div>
                         </div>
                     </li>
                     <li>
@@ -433,7 +400,7 @@ footer a:hover {
                         </div>
                         <div class="exp-company">Varonen Solutions Oy</div>
                         <div class="exp-details">
-                            <div class="exp-description">Freelancing sidegigs across various industries.</div>
+                            <div class="exp-description">Freelancing sidegigs across various industries. Sold the company in 2025.</div>
                         </div>
                     </li>
                     <li>
@@ -446,9 +413,9 @@ footer a:hover {
                         </div>
                         <div class="exp-company">Crowd Collective Finland Oy</div>
                         <div class="exp-details">
-                            <div class="exp-description">Software architect on various client projects. Full-stack development and technical consulting.</div>
+                            <div class="exp-description">Software engineer on client projects. Full-stack development and technical consulting. Projects involved building web applications for large enterprises in Finance and Insurance sectors.</div>
                         </div>
-                    </li>
+                        
                     <li>
                         <div class="exp-header" onclick="toggleExp(this)">
                             <div class="exp-main">
@@ -460,7 +427,6 @@ footer a:hover {
                         <div class="exp-company">Compile Oy</div>
                         <div class="exp-details">
                             <div class="exp-description">Developed and enhanced a cybersecurity SaaS product for Windows platforms. Conducted RabbitMQ performance analysis for clients, identifying critical bottlenecks. Migrated codebase from .NET Framework to .NET 6. Implemented unit tests with NUnit and integrated external systems via RESTful APIs.</div>
-                            <div class="exp-tech">C#/.NET, PostgreSQL, REST APIs, SSH protocols, Jenkins, Python, React</div>
                         </div>
                     </li>
                     <li>
@@ -474,7 +440,6 @@ footer a:hover {
                         <div class="exp-company">Aibidia Oy</div>
                         <div class="exp-details">
                             <div class="exp-description">Delivered multi-tenant SaaS B2B services. Main responsibilities included full-stack development and software architecture, plus DevOps, testing, and project management. Built web application for generating Tax reports (CbC) with dynamic UI generation based on XML-schema. Developed REST interface for client integrations with data transformations and Azure Blob Storage.</div>
-                            <div class="exp-tech">C#/.NET, VueJS, TypeScript, SQL/MSSQL, CosmosDB, Redis, Docker, Kubernetes, Helm, Azure DevOps, Service Bus, API Management, Data Factory, Functions, SignalR, CQRS, Bicep</div>
                         </div>
                     </li>
                     <li>
@@ -488,7 +453,6 @@ footer a:hover {
                         <div class="exp-company">Startup Client</div>
                         <div class="exp-details">
                             <div class="exp-description">Implemented multi-tenant SaaS B2B product. Responsible for all technology matters: front-end/back-end, architecture, infrastructure, testing, DevOps and technical documentation. Built flexible user management capabilities integrated into 3rd party ERP (REST/SOAP/JSON/XML).</div>
-                            <div class="exp-tech">C#/.NET, React, TypeScript, SQL, Azure DevOps, ARM templates, Azure App Service, Service Bus, Functions, API Management, Bicep</div>
                         </div>
                     </li>
                     <li>
@@ -515,7 +479,6 @@ footer a:hover {
                         <div class="exp-company">Taaleri Varainhoito Oy</div>
                         <div class="exp-details">
                             <div class="exp-description">Full-stack developer in Business Development team. Main project: Markowitz portfolio-optimization back-end service for private bankers, enabling real-time portfolio optimization with various constraints based on client risk tolerance. Built with AWS Lambda (Python/Chalice) integrated via .NET REST API with legacy systems. Also maintained legacy systems and produced reports for Finnish and global Tax Authorities (FATCA & CRS).</div>
-                            <div class="exp-tech">C#/.NET, React, TypeScript, SQL/MSSQL, Dapper, ESB, Python, Pandas, NumPy, VBA, RavenDB, AWS, Azure</div>
                         </div>
                     </li>
                     <li>
@@ -529,7 +492,6 @@ footer a:hover {
                         <div class="exp-company">Opti Automation Oy</div>
                         <div class="exp-details">
                             <div class="exp-description">Developed B2C product for controlling electrical heating in apartments to optimize electricity bills. Added support for new heating devices and protocols. Daily work ranged from IoT product development to REST APIs and testing in client environments.</div>
-                            <div class="exp-tech">C/C++, Python, REST APIs, SQL, AWS</div>
                         </div>
                     </li>
                     <li>
@@ -583,48 +545,6 @@ footer a:hover {
                 </ul>
             </div>
 
-            <h2 class="section-header collapsed" onclick="toggleSection(this)">
-                <span class="tech-label">Tech</span>
-                <span class="section-toggle">▼</span>
-            </h2>
-            <div class="section-content collapsed" style="max-height: 0;">
-                <div class="tech-tags">
-                    <span class="tech-tag">C#/.NET</span>
-                    <span class="tech-tag">TypeScript</span>
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">C/C++</span>
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">VueJS</span>
-                    <span class="tech-tag">SQL/MSSQL</span>
-                    <span class="tech-tag">PostgreSQL</span>
-                    <span class="tech-tag">CosmosDB</span>
-                    <span class="tech-tag">RavenDB</span>
-                    <span class="tech-tag">Redis</span>
-                    <span class="tech-tag">Docker</span>
-                    <span class="tech-tag">Kubernetes</span>
-                    <span class="tech-tag">Helm</span>
-                    <span class="tech-tag">Azure</span>
-                    <span class="tech-tag">AWS</span>
-                    <span class="tech-tag">Azure DevOps</span>
-                    <span class="tech-tag">Service Bus</span>
-                    <span class="tech-tag">Functions</span>
-                    <span class="tech-tag">API Management</span>
-                    <span class="tech-tag">Data Factory</span>
-                    <span class="tech-tag">SignalR</span>
-                    <span class="tech-tag">App Service</span>
-                    <span class="tech-tag">Bicep</span>
-                    <span class="tech-tag">ARM templates</span>
-                    <span class="tech-tag">REST APIs</span>
-                    <span class="tech-tag">CQRS</span>
-                    <span class="tech-tag">Jenkins</span>
-                    <span class="tech-tag">Pandas</span>
-                    <span class="tech-tag">NumPy</span>
-                    <span class="tech-tag">Dapper</span>
-                    <span class="tech-tag">ESB</span>
-                    <span class="tech-tag">VBA</span>
-                </div>
-            </div>
-
             </main>
 
         <footer>
@@ -650,34 +570,17 @@ footer a:hover {
         // Toggle section (Experience, Education, etc.)
         function toggleSection(header) {
             header.classList.toggle('collapsed');
-            const content = header.nextElementSibling;
-            if (content.classList.contains('collapsed')) {
-                content.classList.remove('collapsed');
-                content.style.maxHeight = content.scrollHeight + 'px';
-            } else {
-                content.style.maxHeight = content.scrollHeight + 'px';
-                setTimeout(() => {
-                    content.classList.add('collapsed');
-                }, 10);
-            }
+            header.nextElementSibling.classList.toggle('collapsed');
         }
 
         // Toggle individual experience/education item
         function toggleExp(header) {
             header.classList.toggle('expanded');
-            // Find the exp-details element (skip over exp-company)
             const li = header.parentElement;
             const details = li.querySelector('.exp-details');
             if (details) {
                 details.classList.toggle('expanded');
             }
-        }
-
-        // Initialize section content max-heights
-        function initCollapsibles() {
-            document.querySelectorAll('.section-content').forEach(el => {
-                el.style.maxHeight = el.scrollHeight + 'px';
-            });
         }
 
         // Handle initial load and back/forward
@@ -689,10 +592,7 @@ footer a:hover {
             }
         }
 
-        window.addEventListener('load', () => {
-            handleRoute();
-            setTimeout(initCollapsibles, 100);
-        });
+        window.addEventListener('load', handleRoute);
         window.addEventListener('popstate', handleRoute);
     </script>
 </body>
