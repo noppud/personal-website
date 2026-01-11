@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konsta Varonen</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --text: #171717;
+    --text-secondary: #666;
+    --text-tertiary: #999;
+    --bg: #fff;
+    --border: #eaeaea;
+    --link: #171717;
+    --link-hover: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #ededed;
+        --text-secondary: #a1a1a1;
+        --text-tertiary: #666;
+        --bg: #0a0a0a;
+        --border: #2e2e2e;
+        --link: #ededed;
+        --link-hover: #a1a1a1;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Header */
+header {
+    padding: 48px 0 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+nav a {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+nav a:hover, nav a.active {
+    color: var(--text);
+}
+
+/* Landing */
+.landing {
+    padding: 120px 0;
+    min-height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.landing h1 {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 24px;
+    color: var(--text-secondary);
+}
+
+.landing .intro {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text);
+    max-width: 540px;
+}
+
+.landing .intro a {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.landing .intro a:hover {
+    color: var(--text-secondary);
+}
+
+/* About Page */
+.about {
+    padding: 48px 0 96px;
+    display: none;
+}
+
+.about.active {
+    display: block;
+}
+
+.landing.hidden {
+    display: none;
+}
+
+.about h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 32px;
+}
+
+.about img.profile {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 24px;
+}
+
+.about p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.7;
+}
+
+.about p a {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.about p a:hover {
+    color: var(--text-secondary);
+}
+
+.about h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 48px 0 24px;
+    color: var(--text);
+}
+
+/* Collapsible Sections */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.section-header:hover {
+    color: var(--text-secondary);
+}
+
+.section-toggle {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    transition: transform 0.2s;
+}
+
+.section-header.collapsed .section-toggle {
+    transform: rotate(-90deg);
+}
+
+.section-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.section-content.collapsed {
+    max-height: 0 !important;
+}
+
+/* Experience List */
+.experience-list {
+    list-style: none;
+}
+
+.experience-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.experience-list li:last-child {
+    border-bottom: none;
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    cursor: pointer;
+    user-select: none;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.exp-header:hover .exp-title {
+    color: var(--text-secondary);
+}
+
+.exp-main {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex: 1;
+}
+
+.exp-toggle {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    transition: transform 0.2s;
+    margin-right: 8px;
+    transform: rotate(-90deg);
+}
+
+.exp-header.expanded .exp-toggle {
+    transform: rotate(0deg);
+}
+
+.exp-title {
+    font-weight: 500;
+    color: var(--text);
+    transition: color 0.15s;
+}
+
+.exp-date {
+    font-size: 13px;
+    color: var(--text-tertiary);
+}
+
+.exp-company {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 4px 0 8px;
+}
+
+.exp-details {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.2s ease, opacity 0.2s ease;
+}
+
+.exp-details.expanded {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.exp-description {
+    font-size: 14px;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+}
+
+.exp-tech {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--text-tertiary);
+}
+
+/* Education */
+.education-list {
+    list-style: none;
+}
+
+.education-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.education-list li:last-child {
+    border-bottom: none;
+}
+
+.edu-degree {
+    font-weight: 500;
+    color: var(--text);
+}
+
+.edu-school {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.edu-date {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+
+.edu-details {
+    font-size: 14px;
+    color: var(--text-tertiary);
+    margin-top: 4px;
+}
+
+/* Skills */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.skill-group h3 {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.skill-group ul {
+    list-style: none;
+}
+
+.skill-group li {
+    font-size: 14px;
+    color: var(--text-tertiary);
+    padding: 2px 0;
+}
+
+/* Hobbies */
+.hobbies-list {
+    list-style: none;
+}
+
+.hobbies-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.hobbies-list li:last-child {
+    border-bottom: none;
+}
+
+.hobby-name {
+    font-weight: 500;
+    color: var(--text);
+    min-width: 120px;
+}
+
+.hobby-desc {
+    font-size: 14px;
+    color: var(--text-tertiary);
+}
+
+/* Contact */
+.contact-list {
+    list-style: none;
+}
+
+.contact-list li {
+    padding: 8px 0;
+}
+
+.contact-list a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.contact-list a:hover {
+    color: var(--text);
+}
+
+.contact-list .label {
+    display: inline-block;
+    width: 80px;
+    color: var(--text-tertiary);
+}
+
+/* Footer */
+footer {
+    padding: 24px 0 48px;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+}
+
+footer a {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+footer a:hover {
+    color: var(--text);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .landing .intro {
+        font-size: 24px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hobbies-list li {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .hobby-name {
+        min-width: auto;
+    }
+
+    .exp-header {
+        flex-direction: column;
+        gap: 2px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <a href="#" class="name" onclick="showLanding()">Konsta Varonen</a>
+                <nav>
+                    <a href="#about" onclick="showAbout()" id="about-link">About</a>
+                    <a href="https://linkedin.com/in/konstavaronen" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/noppud" target="_blank">GitHub</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="landing" id="landing">
+            <h1>Konsta Varonen</h1>
+            <p class="intro">
+                Backend & AI focused full-stack problem solver.
+                Co-Founder & CTO at <a href="https://control.dev">Control.dev</a>.
+                Helsinki, Finland.
+            </p>
+        </main>
+
+        <main class="about" id="about">
+            <h1>About</h1>
+
+            <p>I'm a software professional based in Helsinki, Finland, with over 10 years of experience in software architecture, full-stack development, and team leadership.</p>
+
+            <p>After running my freelancing company <a href="#">Varonen Solutions Oy</a> for 10 years, I co-founded <a href="https://control.dev">Control.dev</a> where I currently serve as CTO.</p>
+
+            <p>I've worked across various domains including fintech, cybersecurity, SaaS platforms, and IoT. My work philosophy is rooted in deep engagement: I immerse myself completely in every project, with the goal of delivering solutions that exceed expectations.</p>
+
+            <p>Outside of work, I serve as a First Lieutenant in the Finnish Defence Forces reserve.</p>
+
+            <h2 class="section-header" onclick="toggleSection(this)">
+                <span>Experience</span>
+                <span class="section-toggle">▼</span>
+            </h2>
+            <div class="section-content">
+                <ul class="experience-list">
+                    <li>
+                        <div class="exp-header" onclick="toggleExp(this)">
+                            <div class="exp-main">
+                                <span class="exp-toggle">▼</span>
+                                <span class="exp-title">Co-Founder & CTO</span>
+                            </div>
+                            <span class="exp-date">2025 - Present</span>
+                        </div>
+                        <div class="exp-company">Control.dev</div>
+                        <div class="exp-details">
+                            <div class="exp-description">Leading technology strategy and product development at an early-stage startup focused on developer tools.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="exp-header" onclick="toggleExp(this)">
+                            <div class="exp-main">
+                                <span class="exp-toggle">▼</span>
+                                <span class="exp-title">Founder</span>
+                            </div>
+                            <span class="exp-date">2015 - 2025</span>
+                        </div>
+                        <div class="exp-company">Varonen Solutions Oy</div>
+                        <div class="exp-details">
+                            <div class="exp-description">Ran a freelancing company for 10 years, delivering software solutions through consulting agencies. Worked on diverse projects ranging from fintech to IoT, handling full-stack development, architecture, and technical leadership.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="exp-header" onclick="toggleExp(this)">
+                            <div class="exp-main">
+                                <span class="exp-toggle">▼</span>
+                                <span class="exp-title">Senior Consultant</span>
+                            </div>
+                            <span class="exp-date">2024</span>
+                        </div>
+                        <div class="exp-company">Crowd Collective Finland Oy</div>
+                        <div class="exp-details">
+                            <div class="exp-description">Software architect on various client projects. Full-stack development and technical consulting.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="exp-header" onclick="toggleExp(this)">
+                            <div class="exp-main">
+                                <span class="exp-toggle">▼</span>
+                                <span class="exp-title">Software Specialist</span>
+                            </div>
+                            <span class="exp-date">2023 - 2024</span>
+                        </div>
+                        <div class="exp-company">Compile Oy</div>
+                        <div class="exp-details">
+                            <div class="exp-description">Developed and enhanced a cybersecurity SaaS product for Windows platforms. Conducted RabbitMQ performance analysis for clients, identifying critical bottlenecks. Migrated codebase from .NET Framework to .NET 6. Implemented unit tests with NUnit and integrated external systems via RESTful APIs.</div>
+                            <div class="exp-tech">C#/.NET, PostgreSQL, REST APIs, SSH protocols, Jenkins, Python, React</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="exp-header" onclick="toggleExp(this)">
+                            <div class="exp-main">
+                                <span class="exp-toggle">▼</span>
+                                <span class="exp-title">Full-Stack Software Developer</span>
+                            </div>
+                            <span class="exp-date">2021 - 2022</span>
+                        </div>
+                        <div class="exp-company">Aibidia Oy</div>
+                        <div class="exp-details">
+                            <div class="exp-description">Delivered multi-tenant SaaS B2B services. Main responsibilities included full-stack development and software architecture, plus DevOps, testing, and project management. Built web application for generating Tax reports (CbC) with dynamic UI generation based on XML-schema. Developed REST interface for client integrations with data transformations and Azure Blob Storage.</div>
+                            <div class="exp-tech">C#/.NET, VueJS, TypeScript, SQL/MSSQL, CosmosDB, Redis, Docker, Kubernetes, Helm, Azure DevOps, Service Bus, API Management, Data Factory, Functions, SignalR, CQRS, Bicep</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="exp-header" onclick="toggleExp(this)">
+                            <div class="exp-main">
+                                <span class="exp-toggle">▼</span>
+                                <span class="exp-title">Software Developer (Contract)</span>
+                            </div>
+                            <span class="exp-date">2021</span>
+                        </div>
+                        <div class="exp-company">Startup Client</div>
+                        <div class="exp-details">
+                            <div class="exp-description">Implemented multi-tenant SaaS B2B product. Responsible for all technology matters: front-end/back-end, architecture, infrastructure, testing, DevOps and technical documentation. Built flexible user management capabilities integrated into 3rd party ERP (REST/SOAP/JSON/XML).</div>
+                            <div class="exp-tech">C#/.NET, React, TypeScript, SQL, Azure DevOps, ARM templates, Azure App Service, Service Bus, Functions, API Management, Bicep</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="exp-header" onclick="toggleExp(this)">
+                            <div class="exp-main">
+                                <span class="exp-toggle">▼</span>
+                                <span class="exp-title">Peacekeeper & Military Service</span>
+                            </div>
+                            <span class="exp-date">2013 - 2014, 2020</span>
+                        </div>
+                        <div class="exp-company">Finnish Defence Forces</div>
+                        <div class="exp-details">
+                            <div class="exp-description">UNIFIL Lebanon (2020): Watchkeeper/duty-officer in the French-Finnish battalion's Tactical Operations Center S3 cell (operations). Military service at Riihimäki (2013-2014): Battalion leader, commissioned as Second Lieutenant with honors. Currently First Lieutenant in reserve.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="exp-header" onclick="toggleExp(this)">
+                            <div class="exp-main">
+                                <span class="exp-toggle">▼</span>
+                                <span class="exp-title">Software Developer</span>
+                            </div>
+                            <span class="exp-date">2018 - 2021</span>
+                        </div>
+                        <div class="exp-company">Taaleri Varainhoito Oy</div>
+                        <div class="exp-details">
+                            <div class="exp-description">Full-stack developer in Business Development team. Main project: Markowitz portfolio-optimization back-end service for private bankers, enabling real-time portfolio optimization with various constraints based on client risk tolerance. Built with AWS Lambda (Python/Chalice) integrated via .NET REST API with legacy systems. Also maintained legacy systems and produced reports for Finnish and global Tax Authorities (FATCA & CRS).</div>
+                            <div class="exp-tech">C#/.NET, React, TypeScript, SQL/MSSQL, Dapper, ESB, Python, Pandas, NumPy, VBA, RavenDB, AWS, Azure</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="exp-header" onclick="toggleExp(this)">
+                            <div class="exp-main">
+                                <span class="exp-toggle">▼</span>
+                                <span class="exp-title">Software Developer</span>
+                            </div>
+                            <span class="exp-date">2016 - 2017</span>
+                        </div>
+                        <div class="exp-company">Opti Automation Oy</div>
+                        <div class="exp-details">
+                            <div class="exp-description">Developed B2C product for controlling electrical heating in apartments to optimize electricity bills. Added support for new heating devices and protocols. Daily work ranged from IoT product development to REST APIs and testing in client environments.</div>
+                            <div class="exp-tech">C/C++, Python, REST APIs, SQL, AWS</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="exp-header" onclick="toggleExp(this)">
+                            <div class="exp-main">
+                                <span class="exp-toggle">▼</span>
+                                <span class="exp-title">Various Positions</span>
+                            </div>
+                            <span class="exp-date">2011 - 2016</span>
+                        </div>
+                        <div class="exp-company">Multiple Employers</div>
+                        <div class="exp-details">
+                            <div class="exp-description">Worked various jobs while studying and building experience. Croupier at RAY (Finland's Slot Machine Association) in Helsinki casinos and nightclubs, handling account settlements (2012-2015). Taxi driver/chauffeur at Kovanen Yhtiöt Oy (2014-2015). Early freelancing projects through Varonen Solutions Oy. These roles developed customer service, responsibility, and time management skills while funding university studies.</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <h2 class="section-header" onclick="toggleSection(this)">
+                <span>Education</span>
+                <span class="section-toggle">▼</span>
+            </h2>
+            <div class="section-content">
+                <ul class="education-list">
+                    <li>
+                        <div class="exp-header" onclick="toggleExp(this)">
+                            <div class="exp-main">
+                                <span class="exp-toggle">▼</span>
+                                <span class="exp-title">M.Sc. Information Networks</span>
+                            </div>
+                            <span class="exp-date">2017 - 2020</span>
+                        </div>
+                        <div class="exp-details">
+                            <div class="exp-company">Aalto University</div>
+                            <div class="exp-description">Major: ICT in Business. Minor: Financial Engineering.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="exp-header" onclick="toggleExp(this)">
+                            <div class="exp-main">
+                                <span class="exp-toggle">▼</span>
+                                <span class="exp-title">B.Sc. Information Networks</span>
+                            </div>
+                            <span class="exp-date">2014 - 2017</span>
+                        </div>
+                        <div class="exp-details">
+                            <div class="exp-company">Aalto University</div>
+                            <div class="exp-description">Minor: Computer Science</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            </main>
+
+        <footer>
+            <a href="https://linkedin.com/in/konstavaronen" target="_blank">LinkedIn</a>
+        </footer>
+    </div>
+
+    <script>
+        function showAbout() {
+            document.getElementById('landing').classList.add('hidden');
+            document.getElementById('about').classList.add('active');
+            document.getElementById('about-link').classList.add('active');
+            history.pushState(null, '', '#about');
+        }
+
+        function showLanding() {
+            document.getElementById('landing').classList.remove('hidden');
+            document.getElementById('about').classList.remove('active');
+            document.getElementById('about-link').classList.remove('active');
+            history.pushState(null, '', '/');
+        }
+
+        // Toggle section (Experience, Education, etc.)
+        function toggleSection(header) {
+            header.classList.toggle('collapsed');
+            const content = header.nextElementSibling;
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                content.style.maxHeight = content.scrollHeight + 'px';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                setTimeout(() => {
+                    content.classList.add('collapsed');
+                }, 10);
+            }
+        }
+
+        // Toggle individual experience/education item
+        function toggleExp(header) {
+            header.classList.toggle('expanded');
+            // Find the exp-details element (skip over exp-company)
+            const li = header.parentElement;
+            const details = li.querySelector('.exp-details');
+            if (details) {
+                details.classList.toggle('expanded');
+            }
+        }
+
+        // Initialize section content max-heights
+        function initCollapsibles() {
+            document.querySelectorAll('.section-content').forEach(el => {
+                el.style.maxHeight = el.scrollHeight + 'px';
+            });
+        }
+
+        // Handle initial load and back/forward
+        function handleRoute() {
+            if (window.location.hash === '#about') {
+                showAbout();
+            } else {
+                showLanding();
+            }
+        }
+
+        window.addEventListener('load', () => {
+            handleRoute();
+            setTimeout(initCollapsibles, 100);
+        });
+        window.addEventListener('popstate', handleRoute);
+    </script>
+</body>
+</html>
