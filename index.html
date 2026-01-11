@@ -306,11 +306,49 @@ nav a:hover, nav a.active {
     border-bottom: none;
 }
 
+/* Tech Section */
+.tech-label {
+    cursor: pointer;
+    position: relative;
+}
+
+.tech-label:hover::after {
+    content: "Why would you care?";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 12px;
+    padding: 6px 10px;
+    background: var(--border);
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    border-radius: 4px;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 0;
+}
+
+.tech-tag {
+    font-size: 13px;
+    color: var(--text-secondary);
+    background: var(--border);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
 /* Footer */
 footer {
-    padding: 24px 0 72px;
+    padding: 24px 0 120px;
     border-top: 1px solid var(--border);
     margin-top: 48px;
+    padding-bottom: env(safe-area-inset-bottom, 120px);
 }
 
 footer a {
@@ -362,14 +400,6 @@ footer a:hover {
         <main class="about" id="about">
             <img src="profile.jpg" alt="Konsta Varonen" class="profile">
             <h1>About</h1>
-
-            <p>I'm a software professional based in Helsinki, Finland, with over 10 years of experience in software architecture, full-stack development, and team leadership.</p>
-
-            <p>After running my freelancing company <a href="#">Varonen Solutions Oy</a> for 10 years, I co-founded <a href="https://control.dev">Control.dev</a> where I currently serve as CTO.</p>
-
-            <p>I've worked across various domains including fintech, cybersecurity, SaaS platforms, and IoT. My work philosophy is rooted in deep engagement: I immerse myself completely in every project, with the goal of delivering solutions that exceed expectations.</p>
-
-            <p>Outside of work, I serve as a First Lieutenant in the Finnish Defence Forces reserve.</p>
 
             <h2 class="section-header" onclick="toggleSection(this)">
                 <span>Experience</span>
@@ -548,6 +578,48 @@ footer a:hover {
                         </div>
                     </li>
                 </ul>
+            </div>
+
+            <h2 class="section-header collapsed" onclick="toggleSection(this)">
+                <span class="tech-label">Tech</span>
+                <span class="section-toggle">▼</span>
+            </h2>
+            <div class="section-content collapsed" style="max-height: 0;">
+                <div class="tech-tags">
+                    <span class="tech-tag">C#/.NET</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">C/C++</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">VueJS</span>
+                    <span class="tech-tag">SQL/MSSQL</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">CosmosDB</span>
+                    <span class="tech-tag">RavenDB</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Kubernetes</span>
+                    <span class="tech-tag">Helm</span>
+                    <span class="tech-tag">Azure</span>
+                    <span class="tech-tag">AWS</span>
+                    <span class="tech-tag">Azure DevOps</span>
+                    <span class="tech-tag">Service Bus</span>
+                    <span class="tech-tag">Functions</span>
+                    <span class="tech-tag">API Management</span>
+                    <span class="tech-tag">Data Factory</span>
+                    <span class="tech-tag">SignalR</span>
+                    <span class="tech-tag">App Service</span>
+                    <span class="tech-tag">Bicep</span>
+                    <span class="tech-tag">ARM templates</span>
+                    <span class="tech-tag">REST APIs</span>
+                    <span class="tech-tag">CQRS</span>
+                    <span class="tech-tag">Jenkins</span>
+                    <span class="tech-tag">Pandas</span>
+                    <span class="tech-tag">NumPy</span>
+                    <span class="tech-tag">Dapper</span>
+                    <span class="tech-tag">ESB</span>
+                    <span class="tech-tag">VBA</span>
+                </div>
             </div>
 
             </main>
